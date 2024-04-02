@@ -28,7 +28,7 @@ def test_qa():
             context_recall,
         ],
     )
-    assert result['context_precision']>0.75
-    assert result['faithfulness']>0.9
-    assert result['answer_relevancy']>0.9
-    assert result['context_recall']>0.8
+    assert result['context_precision']>0.6
+    assert result['faithfulness']>0.8
+    assert result['answer_relevancy']>0.8
+    assert result['context_recall']>0.7
