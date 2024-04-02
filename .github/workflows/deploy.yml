@@ -22,7 +22,7 @@ jobs:
                 ubuntu@${{ secrets.SSH_HOST }} "
                   cd ragas_cicd &&
                   git checkout main &&
-                  git pull && docker compose up --build &&
+                  git pull && docker compose up --build -d &&
                   exit"
           - name: cleanup
             run: rm -rf ~/.ssh
