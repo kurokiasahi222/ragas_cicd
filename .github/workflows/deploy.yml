@@ -1,0 +1,28 @@
+name: EC2-Deploy
+on:
+  push:
+    branches:
+      - main
+                                                
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment: sandbox
+        steps:
+          - name: Install SSH key
+            uses: shimataro/ssh-key-action@v2
+            with:
+              key: ${{ secrets.SSH_PRIVATE_KEY }}
+              name: github
+              known_hosts: unnecessary
+          - name: connect and pull
+            run: |
+              ssh -i ~/.ssh/github\
+                -o StrictHostKeyChecking=no\
+                ubuntu@${{ secrets.SSH_HOST }} "
+                  cd ragas_cicd &&
+                  git checkout main &&
+                  git pull && docker compose up --build -d &&
+                  exit"
+          - name: cleanup
+            run: rm -rf ~/.ssh
