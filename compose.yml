@@ -1,0 +1,12 @@
+services:
+  llamaindex:
+    container_name: llamaindex
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    build: ./
+    restart: always
+    volumes:
+      - $PWD/storage:/storage
+      - $PWD/rag_data:/rag_data
