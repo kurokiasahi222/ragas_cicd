@@ -8,6 +8,7 @@ from llama_index.core import (
 )
 import os.path
 
+
 colbert_reranker = ColbertRerank(
     top_n=5,
     model="colbert-ir/colbertv2.0",
